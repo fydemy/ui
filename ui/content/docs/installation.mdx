@@ -1,0 +1,56 @@
+---
+title: Installation
+description: How to add to your project?
+---
+
+### Create project
+
+Run the `init` command inside your **root** project to configure the component path, theme, and package manager to install the required dependencies.
+
+```bash tab="npm"
+npx @fydemy/ui@latest init
+```
+
+```bash tab="pnpm"
+pnpm dlx @fydemy/ui@latest init
+```
+
+```bash tab="yarn"
+yarn @fydemy/ui@latest init
+```
+
+```bash tab="bun"
+bunx --bun @fydemy/ui@latest init
+```
+
+### Add component
+
+Start adding component to your designated component path.
+
+```bash tab="npm"
+npx @fydemy/ui@latest add button
+```
+
+```bash tab="pnpm"
+pnpm dlx @fydemy/ui@latest add button
+```
+
+```bash tab="yarn"
+yarn @fydemy/ui@latest add button
+```
+
+```bash tab="bun"
+bunx --bun @fydemy/ui@latest add button
+```
+
+### Import
+
+Import the component that you have added to your project.
+
+```tsx
+import { Button } from "@/components/ui/button";
+
+export default function Home() {
+  return <Button>Create !</Button>;
+}
+```

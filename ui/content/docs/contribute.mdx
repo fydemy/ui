@@ -6,15 +6,27 @@ description: How to contribute to this UI library
 ## Folder structure
 
 <Files>
-  <Folder name="src" defaultOpen>
-    <Folder name="commands">
-      <File name="add.ts" />
-      <File name="init.ts" />
+  <Folder name="cli" defaultOpen>
+    <Folder name="src" defaultOpen>
+      <Folder name="commands">
+        <File name="add.ts" />
+        <File name="init.ts" />
+      </Folder>
+      <File name="cli.ts" />
     </Folder>
-    <File name="cli.ts" />
+
   </Folder>
-  <Folder name="templates">
-    <File name="button.txt" />
+  <Folder name="ui" defaultOpen>
+    <Folder name="public" defaultOpen>
+      <Folder name="[theme]" defaultOpen>
+        <Folder name="[component]" defaultOpen>
+          <File name="index.tsx" />
+          <File name="index.css" />
+        </Folder>
+        <File name="index.css" />
+      </Folder>
+      <File name="cli.ts" />
+    </Folder>
   </Folder>
 </Files>
 
@@ -30,7 +42,7 @@ If you are following the global install the command is `fydemy-ui` depending on 
 ```
 
 ```bash
-git clone https://github.com/fydemy-ui.git
+git clone https://github.com/ui.git
 cd ui && npm i --legacy-peer-deps # to install the defined library versions
 ```
 

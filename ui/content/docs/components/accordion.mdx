@@ -3,7 +3,7 @@ title: Accordion
 description: An accordion component
 ---
 
-import { Accordion, AccordionItem } from "@trakteer/components/accordion";
+import { Accordion, AccordionItem } from "@trakteer/accordion";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
 <Accordion>
@@ -19,20 +19,21 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 
 ### Usage
 
-```bash
-fydemy-ui add badge
+```bash tab="npm"
+npx @fydemy/ui@latest add accordion
 ```
 
-<AutoTypeTable
-  type={`
-export type ButtonProps = {
-  children: React.ReactNode;
-  header: React.ReactNode;
-  open?: boolean;
-  onOpenChange?: () => void;
-};
-`}
-/>
+```bash tab="pnpm"
+pnpm dlx @fydemy/ui@latest add accordion
+```
+
+```bash tab="yarn"
+yarn @fydemy/ui@latest add accordion
+```
+
+```bash tab="bun"
+bunx --bun @fydemy/ui@latest add accordion
+```
 
 ```jsx
 <Accordion>
@@ -46,6 +47,17 @@ export type ButtonProps = {
   </AccordionItem>
 </Accordion>
 ```
+
+<AutoTypeTable
+  type={`
+export type ButtonProps = {
+  children: React.ReactNode;
+  header: React.ReactNode;
+  open?: boolean;
+  onOpenChange?: () => void;
+};
+`}
+/>
 
 ### Examples
 
