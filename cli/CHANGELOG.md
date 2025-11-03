@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release of fydemy-ui
+- Initial release of @fydemy/ui
 - CLI tool for component management
 - Basic UI components
 - TypeScript support
@@ -27,8 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Features
 
-- `fydemy-ui init` command to initialize projects
-- `fydemy-ui add` command to add components
+- `@fydemy/ui init` command to initialize projects
+- `@fydemy/ui add` command to add components
 - Lightweight CSS and TypeScript components
 - No external UI library dependencies
 
@@ -38,5 +38,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - commander: ^14.0.1
 - inquirer: ^12.9.6
 
-[Unreleased]: https://github.com/fydemy-ui/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/fydemy-ui/releases/tag/v1.0.0
+[Unreleased]: https://github.com/@fydemy/ui/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/@fydemy/ui/releases/tag/v1.0.0

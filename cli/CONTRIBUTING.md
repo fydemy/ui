@@ -1,6 +1,6 @@
-# Contributing to fydemy-ui
+# Contributing to @fydemy/ui
 
-Thank you for your interest in contributing to fydemy-ui! We welcome contributions from everyone.
+Thank you for your interest in contributing to @fydemy/ui! We welcome contributions from everyone.
 
 ## 🚀 How to Contribute
 
@@ -9,8 +9,8 @@ Thank you for your interest in contributing to fydemy-ui! We welcome contributio
 1. Fork this repository on GitHub
 2. Clone your forked repository locally:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/fydemy-ui.git
-   cd fydemy-ui
+   git clone https://github.com/YOUR_USERNAME/@fydemy/ui.git
+   cd @fydemy/ui
    ```
 
 ### 2. Set Up Development Environment
@@ -74,8 +74,8 @@ We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) fo
 
 Found a bug or have a feature request?
 
-1. Check [existing issues](https://github.com/fydemy-ui/issues) first
-2. If not found, [create a new issue](https://github.com/fydemy-ui/issues/new)
+1. Check [existing issues](https://github.com/@fydemy/ui/issues) first
+2. If not found, [create a new issue](https://github.com/@fydemy/ui/issues/new)
 3. Provide clear description and steps to reproduce
 4. Include screenshots if applicable
 
@@ -110,10 +110,10 @@ We'd love to hear your ideas! Open an issue with:
 
 ## ❓ Questions?
 
-Feel free to [open an issue](https://github.com/fydemy-ui/issues/new) with the `question` label if you need help!
+Feel free to [open an issue](https://github.com/@fydemy/ui/issues/new) with the `question` label if you need help!
 
 ---
 
-Thank you for contributing to fydemy-ui! 🎉
+Thank you for contributing to @fydemy/ui! 🎉
 
 Go to the `Discussions` tab or visit our Discord Community at [fydemy.com](https://fydemy.com)! 🚀

@@ -9,7 +9,7 @@ import { ASSET_URL, DEFAULT_FILES } from "../utils/constants.js";
 
 function loadConfig(configPath: string): InputType {
   const defaults: InputType = {
-    path: "src/components",
+    path: "app/components/ui",
     theme: "trakteer",
     pm: "npm",
   };
@@ -66,7 +66,7 @@ export async function runAdd(
   const timeoutMs = options?.timeoutMs ?? 10000;
 
   const fetchBase = async (filename: string) => {
-    const url = `${assetBase}/raw/${config.theme}/components/${name}/${filename}`;
+    const url = `${assetBase}/raw/${config.theme}/${name}/${filename}`;
     const res = await fetchWithTimeout(url, timeoutMs);
     if (!res.ok)
       throw new Error(

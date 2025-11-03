@@ -14,7 +14,7 @@ async function promptInitOptions(): Promise<InputType> {
       name: "path",
       type: "input",
       message: "Components path:",
-      default: "src/components",
+      default: "app/components/ui",
     },
     {
       name: "theme",
