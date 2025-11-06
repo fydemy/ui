@@ -16,6 +16,9 @@
   "bin": {
     "fydemy-ui": "dist/cli.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "files": [
     "dist/",
