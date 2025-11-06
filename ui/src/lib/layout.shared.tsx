@@ -6,7 +6,7 @@ export function baseOptions(): BaseLayoutProps {
     nav: {
       title: "@fydemy/ui",
     },
-    githubUrl: "https://github.com/@fydemy/ui",
+    githubUrl: "https://github.com/fydemy/ui",
     links: [
       {
         icon: <Sparkles className="fill-neutral-500" />,
