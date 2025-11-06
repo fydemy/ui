@@ -1,0 +1,35 @@
+name: Auto Release CLI Package
+
+on:
+    pull_request:
+        types: [closed]
+        branches:
+            - main
+
+jobs:
+    release:
+        if: github.event.pull_request.merged == true
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: cli
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  registry-url: "https://registry.npmjs.org/"
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Bump version (patch) and publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: |
+                  npm version patch -m "ci: release %s"
+                  npm publish --access public
+
+                  git push origin main --follow-tags
