@@ -5,6 +5,9 @@ on:
         types: [closed]
         branches:
             - main
+    push:
+        branches:
+            - main
 
 jobs:
     release:
@@ -16,20 +19,21 @@ jobs:
 
         steps:
             - uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - uses: actions/setup-node@v4
               with:
                   node-version: 20
-                  registry-url: "https://registry.npmjs.org/"
+                  registry-url: https://registry.npmjs.org/
 
             - name: Install dependencies
               run: npm ci
 
-            - name: Bump version (patch) and publish
+            - name: Bump version and publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
               run: |
                   npm version patch -m "ci: release %s"
-                  npm publish --access public
-
+                  npm publish
                   git push origin main --follow-tags
