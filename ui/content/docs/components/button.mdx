@@ -6,7 +6,9 @@ description: A button component
 import { Button } from "@trakteer/button";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
-<Button>Create !</Button>
+<div className="flex gap-4 p-16 border items-center justify-center rounded-xl">
+  <Button>Create !</Button>
+</div>
 
 ### Usage
 
@@ -48,7 +50,7 @@ import { ArrowRight, LogIn } from "lucide-react";
 
 A button with icon beside the text content. Use `lucide-react` icon is recommended.
 
-<div className="flex gap-4 h-64 border items-center justify-center rounded-xl">
+<div className="flex flex-wrap gap-4 p-16 border items-center justify-center rounded-xl">
   <Button>
     Register <ArrowRight />
   </Button>
@@ -66,7 +68,7 @@ A button with icon beside the text content. Use `lucide-react` icon is recommend
 
 Control the variant either `default`, `outline`, `destructive`, `dark`. `default` is the default value.
 
-<div className="flex gap-4 h-64 border items-center justify-center rounded-xl">
+<div className="flex flex-wrap gap-4 p-16 border items-center justify-center rounded-xl">
   <Button>Default</Button>
   <Button variant="outline">Outline</Button>
   <Button variant="destructive">Destructive</Button>
@@ -84,7 +86,7 @@ Control the variant either `default`, `outline`, `destructive`, `dark`. `default
 
 Control the style either `default`, `icon`, `shadow`. `shadow` is the default value.
 
-<div className="flex gap-4 h-64 border items-center justify-center rounded-xl">
+<div className="flex gap-4 p-16 border items-center justify-center rounded-xl">
   <Button>Shadow</Button>
   <Button style="default">Default</Button>
   <Button style="icon">

@@ -1,5 +1,5 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { Sparkles } from "lucide-react";
+import { Sparkle } from "lucide-react";
 
 export function baseOptions(): BaseLayoutProps {
   return {
@@ -9,7 +9,7 @@ export function baseOptions(): BaseLayoutProps {
     githubUrl: "https://github.com/fydemy/ui",
     links: [
       {
-        icon: <Sparkles className="fill-neutral-500" />,
+        icon: <Sparkle />,
         text: "Community",
         url: "https://fydemy.com",
       },
