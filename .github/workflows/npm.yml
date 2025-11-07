@@ -42,7 +42,13 @@ jobs:
               run: |
                   echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
 
-                  npm version patch -m "ci: release %s"
-                  npm publish || echo "Version already published, skipping..."
+                  NEW_VERSION=$(npm version patch -m "ci: release %s")
+                  CURRENT_VERSION=$(npm view @fydemy/ui version)
+
+                  if [ "$CURRENT_VERSION" = "$NEW_VERSION" ]; then
+                  echo "Version $NEW_VERSION already exists, skipping publish"
+                  else
+                  npm publish
+                  fi
 
                   git push https://${GH_TOKEN}@github.com/${{ github.repository }} main --follow-tags
