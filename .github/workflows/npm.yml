@@ -38,8 +38,11 @@ jobs:
             - name: Bump version and publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+
                   npm version patch -m "ci: release %s"
                   npm publish || echo "Version already published, skipping..."
-                  git push origin main --follow-tags
+
+                  git push https://${GH_TOKEN}@github.com/${{ github.repository }} main --follow-tags
