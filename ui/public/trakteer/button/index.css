@@ -25,6 +25,17 @@ button[data-theme="trakteer"][data-variant="default"] {
   border-bottom: 4px solid var(--trakteer-default-border);
 }
 
+button[data-theme="trakteer"][data-style="shadow"]:hover {
+  border-bottom: 1px solid var(--trakteer-default-border);
+  filter: brightness(1.05);
+  cursor: pointer;
+}
+
+button[data-theme="trakteer"]:not([data-style="shadow"]):hover {
+  filter: brightness(1.05);
+  cursor: pointer;
+}
+
 button[data-theme="trakteer"][data-variant="default"][data-style="default"] {
   border: none;
 }
