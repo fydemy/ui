@@ -27,6 +27,12 @@ jobs:
                   node-version: 20
                   registry-url: https://registry.npmjs.org/
 
+            - name: Configure npm authentication
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: |
+                  echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+
             - name: Install dependencies
               run: npm ci
 
@@ -40,15 +46,14 @@ jobs:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
-
                   NEW_VERSION=$(npm version patch -m "ci: release %s")
-                  CURRENT_VERSION=$(npm view @fydemy/ui version)
+                  NEW_VERSION=${NEW_VERSION#v}  # Remove 'v' prefix
+                  CURRENT_VERSION=$(npm view @fydemy/ui version 2>/dev/null || echo "0.0.0")
 
                   if [ "$CURRENT_VERSION" = "$NEW_VERSION" ]; then
-                  echo "Version $NEW_VERSION already exists, skipping publish"
+                      echo "Version $NEW_VERSION already exists, skipping publish"
                   else
-                  npm publish
+                      npm publish
                   fi
 
                   git push https://${GH_TOKEN}@github.com/${{ github.repository }} main --follow-tags
