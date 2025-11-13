@@ -1,0 +1,36 @@
+div.accordion[data-theme="trakteer"] {
+  font-family: "Pontano Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+div.accordion[data-theme="trakteer"]
+  > div.accordion_item
+  > div.accordion_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--trakteer-dark);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+div.accordion[data-theme="trakteer"] > div.accordion_item_active {
+  border-radius: 10px;
+  border: 1px solid var(--trakteer-dark);
+}
+
+div.accordion[data-theme="trakteer"]
+  > div.accordion_item_active
+  > div.accordion_header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+div.accordion[data-theme="trakteer"]
+  > div.accordion_item
+  div.accordion_content {
+  padding: 0 1rem;
+}

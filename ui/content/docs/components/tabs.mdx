@@ -6,7 +6,7 @@ description: A tabs component
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@trakteer/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
-<div class="grid place-items-center *:w-full px-10 py-10 border rounded-xl">
+<div className="grid place-items-center *:w-full px-10 py-10 border rounded-xl">
   <Tabs defaultValue="home">
     <TabsList>
       <TabsTrigger value="home">Home</TabsTrigger>
@@ -23,6 +23,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
     <TabsContent value="settings">
       <p>This is Settings tab.</p>
     </TabsContent>
+
   </Tabs>
 </div>
 
@@ -76,13 +77,13 @@ export type TabsProps = {
 
 ### Examples
 
-import { Home, UserRound, Settings } from 'lucide-react';
+import { Home, UserRound, Settings } from "lucide-react";
 
 #### With Icons
 
 A tabs component with icons beside the text. Use `lucide-react` icon is recommended.
 
-<div class="grid place-items-center *:w-full px-10 py-10 border rounded-xl">
+<div className="grid place-items-center *:w-full px-10 py-10 border rounded-xl">
   <Tabs defaultValue="home">
     <TabsList>
       <TabsTrigger value="home"><Home size={18} /> Home</TabsTrigger>
@@ -99,15 +100,22 @@ A tabs component with icons beside the text. Use `lucide-react` icon is recommen
     <TabsContent value="settings">
       <p>Configure your application preferences.</p>
     </TabsContent>
+
   </Tabs>
 </div>
 
 ```jsx
 <Tabs defaultValue="home">
   <TabsList>
-    <TabsTrigger value="home"><Home size={18} /> Home</TabsTrigger>
-    <TabsTrigger value="profile"><UserRound size={18} /> Profile</TabsTrigger>
-    <TabsTrigger value="settings"><Settings size={18} /> Settings</TabsTrigger>
+    <TabsTrigger value="home">
+      <Home size={18} /> Home
+    </TabsTrigger>
+    <TabsTrigger value="profile">
+      <UserRound size={18} /> Profile
+    </TabsTrigger>
+    <TabsTrigger value="settings">
+      <Settings size={18} /> Settings
+    </TabsTrigger>
   </TabsList>
 
   <TabsContent value="home">

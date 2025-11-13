@@ -1,48 +1,49 @@
 /* Tabs Container */
 .tabs[data-theme="trakteer"] {
-    padding: 1.5rem;
-    font-family: "Fredoka", sans-serif;
-    background-color: var(--trakteer-bg-primary);
-    border: 1px solid var(--trakteer-border-light);
-    border-bottom: 4px solid var(--trakteer-border-light);
-    border-radius: 1rem;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+  padding: 1.5rem;
+  font-family: "Fredoka", sans-serif;
+  background-color: var(--trakteer-bg-primary);
+  border: 1px solid var(--trakteer-border-light);
+  border-bottom: 4px solid var(--trakteer-border-light);
+  border-radius: 1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Tabs List */
-.tabs[data-theme="trakteer"]>.tabs-list {
-    display: flex;
-    align-items: baseline;
-    border-bottom: 1px solid var(--trakteer-border-light);
-    transition: border-color 0.3s ease;
+.tabs[data-theme="trakteer"] > .tabs-list {
+  display: flex;
+  align-items: baseline;
+  border-bottom: 1px solid var(--trakteer-border-light);
+  transition: border-color 0.3s ease;
 }
 
 /* Tabs Trigger */
 .tabs[data-theme="trakteer"] [role="button"].tabs-trigger {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.625rem 1rem;
-    font-weight: 500;
-    color: var(--trakteer-text-secondary);
-    cursor: pointer;
-    transition: color 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  font-weight: 500;
+  color: var(--trakteer-text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .tabs[data-theme="trakteer"] [role="button"].tabs-trigger:hover {
-    color: var(--trakteer-text-primary);
+  color: var(--trakteer-text-primary);
 }
 
-.tabs[data-theme="trakteer"] [role="button"].tabs-trigger[aria-selected="true"] {
-    color: var(--trakteer-default);
-    margin-bottom: -1px;
-    border-bottom: 2px solid var(--trakteer-default);
+.tabs[data-theme="trakteer"]
+  [role="button"].tabs-trigger[aria-selected="true"] {
+  color: var(--trakteer-default);
+  margin-bottom: -1px;
+  border-bottom: 2px solid var(--trakteer-default);
 }
 
 /* Tabs Content */
-.tabs[data-theme="trakteer"]>.tabs-contents {
-    padding-top: 1rem;
-    color: var(--trakteer-text-primary);
-    transition: color 0.3s ease;
+.tabs[data-theme="trakteer"] > .tabs-contents {
+  padding-top: 1rem;
+  color: var(--trakteer-text-primary);
+  transition: color 0.3s ease;
 }

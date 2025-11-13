@@ -59,16 +59,14 @@ async function promptInitOptions(): Promise<InputType> {
 
 function installPackage(pm: string, pkg: string) {
   return new Promise<void>((resolve, reject) => {
-    exec(`${pm} install ${pkg}`, (err, stdout, stderr) => {
+    exec(`${pm} install ${pkg}`, (err) => {
       if (err) return reject(err);
-      console.log(stdout);
-      console.error(stderr);
       resolve();
     });
   });
 }
 
-async function writeConfigFile(configPath: string, payload: unknown) {
+export async function writeConfigFile(configPath: string, payload: InputType) {
   const data = JSON.stringify(payload, null, 2);
   await writeFile(configPath, data, "utf8");
 }
@@ -95,11 +93,11 @@ export function init(ui: Command) {
 
         const configPath = path.resolve(process.cwd(), "ui.json");
         await writeConfigFile(configPath, answers);
-        console.log(chalk.blue(`Created ui.json at ${configPath}`));
+        console.log(`${chalk.green(`✔`)} Adding ${chalk.green("ui.json")}`);
 
         const url = `${ASSET_URL}/raw/${answers.theme}/index.css`;
-        console.log(chalk.gray(`Fetching theme CSS from ${url} ...`));
-        const res = await fetchWithTimeout(url, 15_000);
+        console.log(`${chalk.green(`✔`)} Fetching theme`);
+        const res = await fetchWithTimeout(url, 10000);
 
         if (!res.ok) {
           throw new Error(
@@ -114,14 +112,17 @@ export function init(ui: Command) {
 
         await writeAsset(outputPath, "index.css", content);
 
-        console.log(chalk.gray(`Installing lucide-react ...`));
         await installPackage(answers.pm, "lucide-react");
-        console.log(chalk.green("lucide-react installed."));
+        console.log(`${chalk.green(`✔`)} Installing dependencies`);
 
-        console.log(chalk.green("Initialization complete."));
+        console.log(
+          `\n${chalk.green(
+            "Success!"
+          )} Project initialization completed.\nYou may now add components`
+        );
       } catch (err: unknown) {
         const message = err instanceof Error ? err.message : String(err);
-        console.error(chalk.red("Init failed:"), message);
+        console.error(`${chalk.red(`✖`)} ${message}`);
         try {
           process.exitCode = 1;
         } catch {}

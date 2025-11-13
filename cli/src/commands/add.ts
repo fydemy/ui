@@ -1,30 +1,32 @@
 import { Command } from "commander";
 import { mkdir, writeFile } from "fs/promises";
-import { join, resolve } from "path";
+import path, { join, resolve } from "path";
 import chalk from "chalk";
 import { existsSync, readFileSync } from "fs";
 import { fetchWithTimeout } from "../utils/fetch.js";
 import type { InputType } from "../utils/types.js";
-import { ASSET_URL, DEFAULT_FILES } from "../utils/constants.js";
+import { ASSET_URL, DEFAULT_FILES, TIMEOUTMS } from "../utils/constants.js";
+import { writeConfigFile } from "./init.js";
+import inquirer from "inquirer";
 
-function loadConfig(configPath: string): InputType {
+async function loadConfig(configPath: string): Promise<InputType> {
   const defaults: InputType = {
     path: "app/components/ui",
     theme: "trakteer",
     pm: "npm",
   };
 
-  if (!existsSync(configPath)) return defaults;
-
-  try {
-    const raw = readFileSync(configPath, "utf-8");
-    const parsed = JSON.parse(raw) as Partial<InputType> | null;
-    if (!parsed) return defaults;
-    return { ...defaults, ...parsed };
-  } catch (err) {
-    console.warn(chalk.yellow(`Failed to read ${configPath}, using defaults`));
+  if (!existsSync(configPath)) {
+    await writeConfigFile(configPath, defaults);
+    console.log(`${chalk.yellow(`ℹ`)} Added default ui.json`);
     return defaults;
   }
+
+  const parsed = JSON.parse(
+    readFileSync(configPath, "utf-8")
+  ) as Partial<InputType> | null;
+
+  return { ...defaults, ...parsed };
 }
 
 async function writeComponentFiles(
@@ -34,69 +36,101 @@ async function writeComponentFiles(
   mkdirFn = mkdir,
   writeFileFn = writeFile
 ) {
-  await mkdirFn(outputDir, { recursive: true });
+  const fileContents: Record<string, string> = {};
 
   for (const filename of files) {
     try {
-      const content = await fetchBase(filename);
-      await writeFileFn(join(outputDir, filename), content, "utf8");
-      console.log(chalk.green(`Wrote ${join(outputDir, filename)}`));
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
-      console.warn(chalk.yellow(`Skipping ${filename}: ${msg}`));
+      fileContents[filename] = await fetchBase(filename);
+    } catch (err) {
+      throw new Error(`Component not found`);
     }
   }
+
+  if (existsSync(outputDir)) {
+    const { overwrite } = await inquirer.prompt([
+      {
+        type: "confirm",
+        name: "overwrite",
+        message: `Overwrite ${path.relative(process.cwd(), outputDir)}?`,
+        default: false,
+      },
+    ]);
+
+    if (!overwrite) {
+      return false;
+    }
+  }
+
+  await mkdirFn(outputDir, { recursive: true });
+
+  for (const filename of files) {
+    await writeFileFn(
+      join(outputDir, filename),
+      fileContents[filename]!,
+      "utf8"
+    );
+  }
+
+  return true;
 }
 
 export async function runAdd(
   name: string,
-  options?: {
-    cwd?: string;
-    assetUrl?: string;
-    files?: string[];
-    timeoutMs?: number;
+  config: InputType,
+  options: {
+    assetUrl: string;
+    files: string[];
+    timeoutMs: number;
   }
 ) {
-  const cwd = options?.cwd ?? process.cwd();
-  const configPath = resolve(cwd, "ui.json");
-  const config = loadConfig(configPath);
-
-  const files = options?.files ?? DEFAULT_FILES;
-  const assetBase = options?.assetUrl ?? ASSET_URL;
-  const timeoutMs = options?.timeoutMs ?? 10000;
+  const { assetUrl, files, timeoutMs } = options;
 
   const fetchBase = async (filename: string) => {
-    const url = `${assetBase}/raw/${config.theme}/${name}/${filename}`;
+    const url = `${assetUrl}/raw/${config.theme}/${name}/${filename}`;
     const res = await fetchWithTimeout(url, timeoutMs);
-    if (!res.ok)
-      throw new Error(
-        `Failed to fetch ${url}: ${res.status} ${res.statusText}`
-      );
+
+    if (!res.ok) {
+      throw new Error("Not found");
+    }
+
     return res.text();
   };
 
-  const outputPath = join(resolve(cwd), `${config.path}/${name}`);
-  await writeComponentFiles(outputPath, files, fetchBase);
+  const outputPath = join(resolve(process.cwd()), `${config.path}/${name}`);
+  const success = await writeComponentFiles(outputPath, files, fetchBase);
 
-  return { success: true, outputPath };
+  return { success, outputPath };
 }
 
 export function add(program: Command) {
   program
-    .command("add <name>")
+    .command("add <names...>")
     .description("Add a new component to your path")
-    .action(async (name: string) => {
-      try {
-        const result = await runAdd(name);
-        if (result.success) {
-          console.log(
-            chalk.blue(`Component ${name} added at ${result.outputPath}`)
-          );
+    .action(async (names: string[]) => {
+      const config = await loadConfig(resolve(process.cwd(), "ui.json"));
+
+      for (const name of names) {
+        try {
+          const result = await runAdd(name, config, {
+            assetUrl: ASSET_URL,
+            timeoutMs: TIMEOUTMS,
+            files: DEFAULT_FILES,
+          });
+
+          if (result.success) {
+            console.log(
+              `${chalk.green(`✔`)} Added ${path.relative(
+                process.cwd(),
+                result.outputPath
+              )}`
+            );
+          } else {
+            console.error(`${chalk.yellow(`⚠`)} Skipping ${name}`);
+          }
+        } catch (err: unknown) {
+          const message = err instanceof Error ? err.message : String(err);
+          console.error(`${chalk.red(`✖`)} ${message}`);
         }
-      } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : String(err);
-        console.error(chalk.red(`Add failed: ${message}`));
-        process.exitCode = 1;
       }
     });
 }
