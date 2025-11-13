@@ -2,7 +2,7 @@
 
 # @fydemy/ui
 
-`@fydemy/ui` is a lightweight UI-kit library and CLI tool. Components are written in pure CSS and TypeScript without external dependencies like RadixUI or TailwindCSS.
+`@fydemy/ui` is a lightweight UI-kit library and CLI tool. The components are written in pure CSS and TypeScript without external dependencies like RadixUI or TailwindCSS.
 
 ## Documentation
 
