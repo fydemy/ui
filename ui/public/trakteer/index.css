@@ -29,35 +29,35 @@
   --trakteer-text-muted: #a0a0a0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --trakteer-default: #3cd278;
-    --trakteer-default-border: #2b9555;
-    --trakteer-default-color: #f8f8f8;
 
-    --trakteer-outline: #333333;
-    --trakteer-outline-border: #666666;
-    --trakteer-outline-color: #a0a0a0;
+html.dark {
+  --trakteer-default: #3cd278;
+  --trakteer-default-border: #2b9555;
+  --trakteer-default-color: #f8f8f8;
 
-    --trakteer-destructive: #ff4757;
-    --trakteer-destructive-border: #c23342;
-    --trakteer-destructive-color: #f8f8f8;
+  --trakteer-outline: #333333;
+  --trakteer-outline-border: #666666;
+  --trakteer-outline-color: #a0a0a0;
 
-    --trakteer-dark: #fefefe;
-    --trakteer-dark-border: #333333;
-    --trakteer-dark-color: #242525;
+  --trakteer-destructive: #ff4757;
+  --trakteer-destructive-border: #c23342;
+  --trakteer-destructive-color: #f8f8f8;
 
-    --trakteer-bg-primary: #1a1a1a;
-    --trakteer-bg-secondary: #242424;
+  --trakteer-dark: #fefefe;
+  --trakteer-dark-border: #333333;
+  --trakteer-dark-color: #242525;
 
-    --trakteer-border-light: #333333;
-    --trakteer-border-medium: #444444;
+  --trakteer-bg-primary: #1a1a1a;
+  --trakteer-bg-secondary: #242424;
 
-    --trakteer-text-primary: #fefefe;
-    --trakteer-text-secondary: #a0a0a0;
-    --trakteer-text-muted: #888888;
-  }
+  --trakteer-border-light: #333333;
+  --trakteer-border-medium: #444444;
+
+  --trakteer-text-primary: #fefefe;
+  --trakteer-text-secondary: #a0a0a0;
+  --trakteer-text-muted: #888888;
 }
+
 
 [data-theme="trakteer"] {
   margin: 0;
