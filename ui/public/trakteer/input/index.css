@@ -1,0 +1,157 @@
+/* Input Wrapper */
+.input-wrapper[data-theme='trakteer'] {
+  font-family: 'Pontano Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Input Label */
+.input-wrapper[data-theme='trakteer'] .input-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--trakteer-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+/* Input Container */
+.input-wrapper[data-theme='trakteer'] .input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Input Base Styles */
+.input-wrapper[data-theme='trakteer'] .input {
+  font-family: 'Pontano Sans', sans-serif;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 16px;
+  color: var(--trakteer-text-primary);
+  background-color: var(--trakteer-bg-primary);
+  border: 1px solid var(--trakteer-border-medium);
+  border-bottom: 4px solid var(--trakteer-border-medium);
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-wrapper[data-theme='trakteer'] .input::placeholder {
+  color: var(--trakteer-text-muted);
+}
+
+/* Input with Icon */
+.input-wrapper[data-theme='trakteer'] .input-container:has(.input-icon-left) .input {
+  padding-left: 2.75rem;
+}
+
+.input-wrapper[data-theme='trakteer'] .input-container:has(.input-icon-right) .input {
+  padding-right: 2.75rem;
+}
+
+/* Input Icon */
+.input-wrapper[data-theme='trakteer'] .input-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--trakteer-text-secondary);
+  z-index: 1;
+}
+
+.input-wrapper[data-theme='trakteer'] .input-icon-left {
+  left: 1rem;
+}
+
+.input-wrapper[data-theme='trakteer'] .input-icon-right {
+  right: 1rem;
+}
+
+.input-wrapper[data-theme='trakteer'] .input-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Input Default Variant */
+.input-wrapper[data-theme='trakteer'] .input[data-variant='default'] {
+  border-color: var(--trakteer-border-medium);
+  border-bottom-color: var(--trakteer-border-medium);
+}
+
+.input-wrapper[data-theme='trakteer'] .input[data-variant='default']:focus {
+  border-color: var(--trakteer-default-border);
+  border-bottom-color: var(--trakteer-default-border);
+  background-color: var(--trakteer-bg-primary);
+}
+
+.input-wrapper[data-theme='trakteer'] .input[data-variant='default']:focus + .input-icon-right,
+.input-wrapper[data-theme='trakteer'] .input-container:has(.input[data-variant='default']:focus) .input-icon {
+  color: var(--trakteer-default);
+}
+
+/* Input Error Variant */
+.input-wrapper[data-theme='trakteer'] .input[data-variant='error'] {
+  border-color: var(--trakteer-destructive-border);
+  border-bottom-color: var(--trakteer-destructive-border);
+  background-color: var(--trakteer-bg-primary);
+}
+
+.input-wrapper[data-theme='trakteer'] .input[data-variant='error']:focus {
+  border-color: var(--trakteer-destructive-border);
+  border-bottom-color: var(--trakteer-destructive-border);
+}
+
+.input-wrapper[data-theme='trakteer'] .input[data-variant='error']:focus + .input-icon-right,
+.input-wrapper[data-theme='trakteer'] .input-container:has(.input[data-variant='error']:focus) .input-icon {
+  color: var(--trakteer-destructive);
+}
+
+/* Input Success Variant */
+.input-wrapper[data-theme='trakteer'] .input[data-variant='success'] {
+  border-color: var(--trakteer-default-border);
+  border-bottom-color: var(--trakteer-default-border);
+  background-color: var(--trakteer-bg-primary);
+}
+
+.input-wrapper[data-theme='trakteer'] .input[data-variant='success']:focus {
+  border-color: var(--trakteer-default-border);
+  border-bottom-color: var(--trakteer-default-border);
+}
+
+.input-wrapper[data-theme='trakteer'] .input[data-variant='success']:focus + .input-icon-right,
+.input-wrapper[data-theme='trakteer'] .input-container:has(.input[data-variant='success']:focus) .input-icon {
+  color: var(--trakteer-default);
+}
+
+/* Input Disabled State */
+.input-wrapper[data-theme='trakteer'] .input:disabled {
+  background-color: var(--trakteer-bg-secondary);
+  border-color: var(--trakteer-border-light);
+  border-bottom-color: var(--trakteer-border-light);
+  color: var(--trakteer-text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.input-wrapper[data-theme='trakteer'] .input:disabled::placeholder {
+  color: var(--trakteer-text-muted);
+}
+
+/* Input Readonly State */
+.input-wrapper[data-theme='trakteer'] .input[readonly] {
+  background-color: var(--trakteer-bg-secondary);
+  cursor: default;
+}
+
+/* Input Helper Text */
+.input-wrapper[data-theme='trakteer'] .input-helper {
+  font-size: 12px;
+  color: var(--trakteer-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.input-wrapper[data-theme='trakteer'] .input-helper-error {
+  color: var(--trakteer-destructive);
+}

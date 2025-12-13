@@ -1,0 +1,188 @@
+---
+title: Input
+description: A text input component
+---
+
+import { Input } from '@trakteer/input';
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+
+<div className="flex gap-4 p-16 border items-center justify-center rounded-xl">
+  <Input placeholder="Enter your name" />
+</div>
+
+### Usage
+
+```bash tab="npm"
+npx @fydemy/ui@latest add input
+```
+
+```bash tab="pnpm"
+pnpm dlx @fydemy/ui@latest add input
+```
+
+```bash tab="yarn"
+yarn @fydemy/ui@latest add input
+```
+
+```bash tab="bun"
+bunx --bun @fydemy/ui@latest add input
+```
+
+```jsx
+<Input placeholder="Enter your name" />
+```
+
+<AutoTypeTable
+  type={`
+export type InputProps = {
+  type?: "text" | "email" | "password" | "number" | "tel" | "url" | "search";
+  placeholder?: string;
+  value?: string;
+  defaultValue?: string;
+  variant?: "default" | "error" | "success";
+  disabled?: boolean;
+  readonly?: boolean;
+  label?: string;
+  helperText?: string;
+  errorMessage?: string;
+  icon?: React.ReactNode;
+  iconPosition?: "left" | "right";
+  className?: string;
+  id?: string;
+  name?: string;
+  required?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+};
+`}
+/>
+
+### Examples
+
+import { Mail, Search, Lock, User } from 'lucide-react';
+
+#### With Label
+
+An input with a label for better accessibility and user experience.
+
+<div className="flex flex-col gap-4 p-16 border items-center justify-center rounded-xl">
+  <Input label="Email Address" placeholder="name@example.com" type="email" />
+  <Input label="Full Name" placeholder="John Doe" />
+</div>
+
+```jsx
+<Input label="Email Address" placeholder="name@example.com" type="email" />
+<Input label="Full Name" placeholder="John Doe" />
+```
+
+#### With Icon
+
+An input with icon on the left or right side. Use `lucide-react` icon is recommended.
+
+<div className="flex flex-col gap-4 p-16 border items-center justify-center rounded-xl">
+  <Input label="Email" placeholder="name@example.com" type="email" icon={<Mail />} iconPosition="left" />
+  <Input label="Search" placeholder="Search..." type="search" icon={<Search />} iconPosition="right" />
+</div>
+
+```jsx
+<Input
+  label="Email"
+  placeholder="name@example.com"
+  type="email"
+  icon={<Mail />}
+  iconPosition="left"
+/>
+<Input
+  label="Search"
+  placeholder="Search..."
+  type="search"
+  icon={<Search />}
+  iconPosition="right"
+/>
+```
+
+#### Variants
+
+Control the variant either `default`, `error`, or `success`. `default` is the default value.
+
+<div className="flex flex-col gap-4 p-16 border items-center justify-center rounded-xl">
+  <Input label="Default" placeholder="Default input" variant="default" />
+  <Input label="Success" placeholder="Valid input" variant="success" />
+  <Input label="Error" placeholder="Invalid input" variant="error" />
+</div>
+
+```jsx
+<Input label="Default" placeholder="Default input" variant="default" />
+<Input label="Success" placeholder="Valid input" variant="success" />
+<Input label="Error" placeholder="Invalid input" variant="error" />
+```
+
+#### With Helper Text
+
+Add helper text or error message to provide additional context or validation feedback.
+
+<div className="flex flex-col gap-4 p-16 border items-center justify-center rounded-xl">
+  <Input label="Password" type="password" placeholder="Enter your password" helperText="Must be at least 8 characters" />
+  <Input label="Email" type="email" placeholder="name@example.com" variant="error" errorMessage="Please enter a valid email address" />
+</div>
+
+```jsx
+<Input
+  label="Password"
+  type="password"
+  placeholder="Enter your password"
+  helperText="Must be at least 8 characters"
+/>
+<Input
+  label="Email"
+  type="email"
+  placeholder="name@example.com"
+  variant="error"
+  errorMessage="Please enter a valid email address"
+/>
+```
+
+#### States
+
+Input supports `disabled` and `readonly` states.
+
+<div className="flex flex-col gap-4 p-16 border items-center justify-center rounded-xl">
+  <Input label="Disabled" placeholder="Cannot edit" disabled />
+  <Input label="Readonly" placeholder="Read only value" readonly value="Read only content" />
+</div>
+
+```jsx
+<Input label="Disabled" placeholder="Cannot edit" disabled />
+<Input label="Readonly" placeholder="Read only value" readonly value="Read only content" />
+```
+
+#### Input Types
+
+Support for various HTML input types.
+
+<div className="flex flex-col gap-4 p-16 border items-center justify-center rounded-xl">
+  <Input label="Text" type="text" placeholder="Enter text" />
+  <Input label="Email" type="email" placeholder="name@example.com" icon={<Mail />} iconPosition="left" />
+  <Input label="Password" type="password" placeholder="Enter password" icon={<Lock />} iconPosition="left" />
+  <Input label="Number" type="number" placeholder="Enter number" />
+  <Input label="Search" type="search" placeholder="Search..." icon={<Search />} iconPosition="left" />
+</div>
+
+```jsx
+<Input label="Text" type="text" placeholder="Enter text" />
+<Input label="Email" type="email" placeholder="name@example.com" icon={<Mail />} iconPosition="left" />
+<Input label="Password" type="password" placeholder="Enter password" icon={<Lock />} iconPosition="left" />
+<Input label="Number" type="number" placeholder="Enter number" />
+<Input label="Search" type="search" placeholder="Search..." icon={<Search />} iconPosition="left" />
+```
+
+#### Controlled Input
+
+Use `value` and `onChange` to control the input state.
+
+```jsx
+const [value, setValue] = useState('');
+
+<Input label="Controlled Input" value={value} onChange={(e) => setValue(e.target.value)} placeholder="Type something..." />;
+```
